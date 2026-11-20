@@ -368,7 +368,7 @@
 %global buildver        10
 %global rpmrelease      1
 # Settings used by the portable build
-%global portablerelease 1.1
+%global portablerelease 1.5
 # The portable bakes its own rpmrelease (not the CIQ .1) into the JVM vendor version
 # string (--with-vendor-version-string), and CheckVendor in %check compares against it.
 %global portablerpmrelease 1
@@ -1299,7 +1299,7 @@ ExclusiveArch: %{aarch64} %{ppc64le} s390x x86_64
 
 Name: java-%{javaver}-%{origin}
 Version: %{newjavaver}.%{buildver}
-Release: %{?eaprefix}%{rpmrelease}%{?extraver}.1%{?dist}
+Release: %{?eaprefix}%{rpmrelease}%{?extraver}.5%{?dist}
 # Equivalent for the portable build
 %global prelease %{?eaprefix}%{portablerelease}%{?extraver}
 # java-1.5.0-ibm from jpackage.org set Epoch to 1 for unknown reasons
@@ -2573,6 +2573,18 @@ cjc.mainProgram(args)
 %endif
 
 %changelog
+* Thu Nov 19 2026 Jason Rodriguez <jrodriguez@ciq.com> - 1:21.0.9.0.10-1.5
+- Fix CVE-2026-47063: rebuild against java-21-openjdk-portable carrying JDK-8381049
+
+* Thu Nov 19 2026 Jason Rodriguez <jrodriguez@ciq.com> - 1:21.0.9.0.10-1.4
+- Fix CVE-2026-34282: rebuild against java-21-openjdk-portable carrying JDK-8374557
+
+* Thu Nov 19 2026 Jason Rodriguez <jrodriguez@ciq.com> - 1:21.0.9.0.10-1.3
+- Fix CVE-2026-22016: rebuild against java-21-openjdk-portable carrying JDK-8370529
+
+* Thu Nov 19 2026 Jason Rodriguez <jrodriguez@ciq.com> - 1:21.0.9.0.10-1.2
+- Fix CVE-2026-21945: rebuild against java-21-openjdk-portable carrying JDK-8368032
+
 * Wed Nov 18 2026 Jason Rodriguez <jrodriguez@ciq.com> - 1:21.0.9.0.10-1.1
 - Fix CVE-2026-114938: rebuild against the java-21-openjdk-portable carrying JDK-8393212
   (x86_64 Base64 decodeBlock heap overflow); this wrapper only repackages the portable
